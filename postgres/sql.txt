@@ -1,0 +1,7 @@
+CREATE TABLE PERSON (
+	ID INTEGER,
+	NAME VARCHAR,
+	PRIMARY KEY(ID)
+);
+insert into PERSON values (1, 'Yuji Konishi');
+insert into PERSON values (2, 'AAA BBB');

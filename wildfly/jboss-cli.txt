@@ -1,0 +1,12 @@
+connect
+deploy /tmp/mariadb-java-client-2.0.3.jar
+data-source add \
+  --name=MariadbDS \
+  --connection-url=jdbc:mysql://mariadb:3306/mariadb \
+  --jndi-name=java:/datasource \
+  --driver-name=mariadb-java-client-2.0.3.jar \ 
+  --user-name=mariadb \
+  --password=password \
+  --jta=true \
+  --enabled=true \
+  --use-ccm=true

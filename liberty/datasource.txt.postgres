@@ -1,0 +1,7 @@
+<library id="postgreslib">
+    <fileset dir="/opt" includes="postgresql-42.1.1.jar" />
+</library>
+<dataSource id="postgres" jndiName="jdbc:/datasource">
+    <jdbcDriver libraryRef="postgreslib"/>
+    <properties databaseName="postgres" password="password" portNumber="5432" serverName="postgres" user="postgres"/>
+</dataSource>

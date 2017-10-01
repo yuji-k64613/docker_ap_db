@@ -1,0 +1,7 @@
+<library id="mariadblib">
+    <fileset dir="/opt" includes="mariadb-java-client-2.0.3.jar"/>
+</library>
+<dataSource id="mariadb" jndiName="jdbc:/datasource">
+    <jdbcDriver libraryRef="mariadblib"/>
+    <properties databaseName="mariadb" password="password" portNumber="3306" serverName="mariadb" user="mariadb"/>
+</dataSource>

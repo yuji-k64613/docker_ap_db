@@ -1,0 +1,8 @@
+CREATE DATABASE mariadb;
+use mariadb;
+CREATE TABLE PERSON (
+	ID INTEGER,
+	NAME VARCHAR(32),
+	PRIMARY KEY(ID)
+);
+insert into PERSON values (1, 'Yuji Konishi');
