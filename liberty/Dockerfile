@@ -19,7 +19,7 @@ COPY datasource.txt /tmp
 RUN sed -i '/<server/r /tmp/datasource.txt' ./usr/servers/server1/server.xml
 
 COPY postgresql-42.1.1.jar /opt
-COPY mariadb-java-client-2.0.3.jar /opt
+COPY mariadb-java-client-2.1.2.jar /opt
 
 COPY myapp.war ./usr/servers/server1/dropins/
 

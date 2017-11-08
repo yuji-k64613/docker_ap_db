@@ -3,7 +3,7 @@ deploy /tmp/postgresql-42.1.1.jar
 data-source add \
   --name=PostgresDS \
   --connection-url=jdbc:postgresql://postgres:5432/postgres \
-  --jndi-name=java:/datasource \
+  --jndi-name=java:jboss/datasources/myappDS \
   --driver-name=postgresql-42.1.1.jar \
   --user-name=postgres \
   --password=password \

@@ -1,3 +1,5 @@
-CREATE USER 'mariadb'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON *.* TO 'mariadb'@'localhost';
+#CREATE USER 'mariadb'@'localhost' IDENTIFIED BY 'password';
+#GRANT ALL PRIVILEGES ON *.* TO 'mariadb'@'localhost';
+CREATE USER 'mariadb'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'mariadb'@'%';
 FLUSH PRIVILEGES;

@@ -1,7 +1,7 @@
-<library id="postgreslib">
-    <fileset dir="/opt" includes="postgresql-42.1.1.jar" />
+<library id="mariadblib">
+    <fileset dir="/opt" includes="mariadb-java-client-2.1.2.jar"/>
 </library>
-<dataSource id="postgres" jndiName="jdbc:/datasource">
-    <jdbcDriver libraryRef="postgreslib"/>
-    <properties databaseName="postgres" password="password" portNumber="5432" serverName="postgres" user="postgres"/>
+<dataSource id="mariadb" jndiName="jdbc:/datasource">
+    <jdbcDriver libraryRef="mariadblib"/>
+    <properties databaseName="mariadb" password="password" portNumber="3306" serverName="mariadb" user="mariadb"/>
 </dataSource>

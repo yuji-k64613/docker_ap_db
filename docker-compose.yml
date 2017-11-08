@@ -1,6 +1,16 @@
 version: '3.1'
 
 services:
+  jenkins:
+    build: ./jenkins
+    hostname: jenkins01
+    ports:
+      - 9090:8080
+  selenium:
+    build: ./selenium
+    hostname: selenium01
+    ports:
+      - 5901:5901
 #  postgres:
 #    build: ./postgres
 #    ports:
@@ -8,17 +18,21 @@ services:
 #    environment:
 #      POSTGRES_PASSWORD: password
 #    volumes:
-#      - ./postgres/data:/var/lib/postgresql/data 
+#      #- ./postgres/data:/var/lib/postgresql/data 
+#      - postgres_volume:/var/lib/postgresql/data
   mariadb:
     build: ./mariadb
+    hostname: mariadb02
     ports:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
-      - ./mariadb/mysql:/var/lib/mysql
+      #- ./mariadb/mysql:/var/lib/mysql
+      - mariadb_volume:/var/lib/mysql
   wildfly:
     build: ./wildfly
+    hostname: wildfly03
     depends_on:
 #      - postgres
       - mariadb
@@ -28,7 +42,12 @@ services:
 #  liberty:
 #    build: ./liberty
 #    depends_on:
-#      - postgres
-##      - mariadb
+##      - postgres
+#      - mariadb
 #    ports:
 #      - 9080:9080
+volumes:
+  mariadb_volume:
+    driver: 'local'
+  postgres_volume:
+    driver: 'local'
