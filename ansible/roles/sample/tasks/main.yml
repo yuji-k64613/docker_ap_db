@@ -1,0 +1,2 @@
+- name: sample module
+  sample: command="ls /tmp"
