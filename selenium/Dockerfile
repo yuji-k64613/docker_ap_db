@@ -18,15 +18,24 @@ RUN pip install -U selenium
 RUN systemd-machine-id-setup
 RUN mkdir $HOME/.vnc
 
+#
+# ロケールの設定(日本語化)
+#
+RUN yum -y reinstall glibc-common \
+  && localedef -v -c -i ja_JP -f UTF-8 ja_JP.UTF-8; echo ""; env LANG=ja_JP.UTF-8
+RUN rm -f /etc/localtime \
+  && ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+RUN yum install -y vlgothic-* \
+  && yum clean all
+ENV LANG ja_JP.UTF-8
+
 COPY selenium-server-standalone-3.6.0.jar /root
 COPY geckodriver /root
 COPY passwd /root/.vnc/passwd
 COPY sample.py /root/sample.py
 COPY seleniumUtil.py /root/seleniumUtil.py
 COPY script.sh /root/script.sh
+RUN chmod 600 /root/.vnc/passwd
 
 WORKDIR /root
-
-ENV LANG ja_JP.UTF-8
-
 CMD /root/script.sh
