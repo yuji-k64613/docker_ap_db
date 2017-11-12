@@ -11,6 +11,8 @@ RUN yum install -y \
 RUN mkdir -p /opt/jenkins
 COPY jenkins.war /opt/jenkins
 ADD sample01 /tmp/sample01
+ADD sample02 /tmp/sample02
+ADD script.sh /opt/jenkins
 
 WORKDIR /opt/jenkins
-CMD java -jar jenkins.war
+CMD ./script.sh
