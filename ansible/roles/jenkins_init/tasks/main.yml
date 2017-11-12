@@ -1,0 +1,12 @@
+- name: ディレクトリの存在チェック
+  stat: path={{ "/tmp/sample01" }}
+  register: f
+- name: sample01
+  shell: mv /tmp/sample01 /root/.jenkins/jobs
+  when: f.stat.exists
+- name: ディレクトリの存在チェック
+  stat: path={{ "/tmp/sample02" }}
+  register: f
+- name: sample02
+  shell: mv /tmp/sample02 /root/.jenkins/jobs
+  when: f.stat.exists

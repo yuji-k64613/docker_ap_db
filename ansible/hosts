@@ -1,2 +1,8 @@
 [docker_host]
 dockerapdb_jenkins_1
+dockerapdb_mariadb_1
+dockerapdb_selenium_1
+dockerapdb_wildfly_1
+
+[jenkins_host]
+dockerapdb_jenkins_1
