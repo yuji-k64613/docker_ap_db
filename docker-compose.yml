@@ -49,7 +49,7 @@ services:
 
   mongodb:
     # コンテナイメージを指定（image:コンテナイメージ名:タグ名）
-    image: mongo:latest
+    build: ./mongodb
     # コンテナのデータをボリュームとしてホストOSにマウント
     volumes:
       # MongoDBのデータをマウント
@@ -59,7 +59,7 @@ services:
    
   rocketchat:
     # コンテナイメージを指定（image:コンテナイメージ名:タグ名）
-    image: rocketchat/rocket.chat:latest
+    build: ./rocketchat
     volumes:
       - ./data/uploads:/app/uploads
     depends_on:
@@ -101,7 +101,7 @@ services:
       #
       - HUBOT_JENKINS_URL=http://jenkins:8080
       - HUBOT_JENKINS_USER=admin
-      - HUBOT_JENKINS_PASSWORD=f523ab173fc3129ad81a60adfbdbe993
+      - HUBOT_JENKINS_PASSWORD=4aac8e9aeca0930ab4a42b98ed8c05a4
       - HUBOT_JENKINS_ROOM=general
       #
       # Jenkins設定(未使用)

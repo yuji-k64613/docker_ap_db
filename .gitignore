@@ -3,6 +3,7 @@ wildfly/wildfly-11.0.0.Final.zip
 liberty/wlp-javaee7-17.0.0.2.zip
 mariadb/mysql
 ansible/*.retry
+ansible/output/*
 
 data/hubot/*
 data/mongodb/*

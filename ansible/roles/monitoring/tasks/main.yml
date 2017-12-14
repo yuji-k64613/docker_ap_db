@@ -1,0 +1,7 @@
+- name: ps
+  shell: ps -ef | grep -v command.py > /tmp/ps.txt
+- name: fetch
+  fetch:
+    src: /tmp/ps.txt
+    dest: ./output/ps-{{ inventory_hostname }}.txt
+    flat: yes
