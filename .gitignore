@@ -3,5 +3,11 @@ wildfly/wildfly-11.0.0.Final.zip
 liberty/wlp-javaee7-17.0.0.2.zip
 mariadb/mysql
 ansible/*.retry
+
+data/hubot/*
+data/mongodb/*
+data/uploads/*
+!.gitkeep
+
 .DS_Store
 .*.swp

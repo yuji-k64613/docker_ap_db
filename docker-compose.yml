@@ -46,6 +46,71 @@ services:
 #      - mariadb
 #    ports:
 #      - 9080:9080
+
+  mongodb:
+    # コンテナイメージを指定（image:コンテナイメージ名:タグ名）
+    image: mongo:latest
+    # コンテナのデータをボリュームとしてホストOSにマウント
+    volumes:
+      # MongoDBのデータをマウント
+      - ./data/mongodb:/data/db
+    # MongoDBのjournalファイルをsmallfilesとする
+    command: mongod --smallfiles --bind_ip_all
+   
+  rocketchat:
+    # コンテナイメージを指定（image:コンテナイメージ名:タグ名）
+    image: rocketchat/rocket.chat:latest
+    volumes:
+      - ./data/uploads:/app/uploads
+    depends_on:
+      - mongodb
+    # 環境変数を設定
+    environment:
+      # MongoDB（mongodb）のURLを指定
+      - MONGO_URL=mongodb://mongodb:27017/rocketchat
+      # RocketChatのURL（ここではホスト名をlocalhostとしています）
+      - ROOT_URL=http://localhost:3000/
+      # アカウントのメールアドレスのドメインチェックを無効化
+      - Accounts_UseDNSDomainCheck=false
+    # RocketChatのポートを設定
+    ports:
+      - 3000:3000
+  
+  hubot:
+    build: ./hubot
+    depends_on:
+      - rocketchat
+    volumes:
+      # hubotscriptsのコンテナのデータをボリュームとしてホストOSにマウント
+      - ./data/hubot:/var/www/hubotscripts
+    environment:
+      # RocketChatのURL（環境に合わせてIPアドレスを修正）
+      - ROCKETCHAT_URL=rocketchat:3000
+      # 連携させるチャンネル名
+      - ROCKETCHAT_ROOM=GENERAL
+      # RocketChatにログインするための認証情報（ユーザーとパスワード）
+      - ROCKETCHAT_USER=bot
+      - ROCKETCHAT_PASSWORD=password
+      # bot名
+      - BOT_NAME=RocketchatBot
+      # 外部スクリプト
+      - _EXTERNALSCRIPTS=hubot-diagnostics,hubot-help,hubot-seen,hubot-links,hubot-greetings
+      #- _EXTERNALSCRIPTS=hubot-diagnostics,hubot-help,hubot-seen,hubot-links,hubot-greetings,hubot-jenkins-notifier
+      #
+      # Jenkins設定
+      #
+      - HUBOT_JENKINS_URL=http://jenkins:8080
+      - HUBOT_JENKINS_USER=admin
+      - HUBOT_JENKINS_PASSWORD=f523ab173fc3129ad81a60adfbdbe993
+      - HUBOT_JENKINS_ROOM=general
+      #
+      # Jenkins設定(未使用)
+      #
+      # JenkinsのURL（環境に合わせてIPアドレスを修正）
+      #- HUBOT_JENKINS_URL=http://jenkins:8080
+      # Jenkinsにログインするための認証情報（ユーザーとパスワード）
+      #- HUBOT_JENKINS_AUTH=admin:password
+
 volumes:
   mariadb_volume:
     driver: 'local'
