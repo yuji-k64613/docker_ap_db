@@ -11,6 +11,8 @@ services:
     hostname: selenium01
     ports:
       - 5901:5901
+    environment:
+      - DISPLAY=:1
 #  postgres:
 #    build: ./postgres
 #    ports:
@@ -101,7 +103,7 @@ services:
       #
       - HUBOT_JENKINS_URL=http://jenkins:8080
       - HUBOT_JENKINS_USER=admin
-      - HUBOT_JENKINS_PASSWORD=4aac8e9aeca0930ab4a42b98ed8c05a4
+      - HUBOT_JENKINS_PASSWORD=77d01c78ad2d7e59347edf98fa821b5a
       - HUBOT_JENKINS_ROOM=general
       #
       # Jenkins設定(未使用)

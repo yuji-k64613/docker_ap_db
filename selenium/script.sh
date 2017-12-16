@@ -1,5 +1,6 @@
 #!/bin/bash
-export DISPLAY=:1
+set -e
+
 vncserver $DISPLAY -geometry 1024x768
 fvwm &
 
