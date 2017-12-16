@@ -25,6 +25,8 @@ curl -X POST --user admin:4aac8e9aeca0930ab4a42b98ed8c05a4 http://localhost:9090
 # docker-compose.yml修正
 - HUBOT_JENKINS_PASSWORD=4aac8e9aeca0930ab4a42b98ed8c05a4
 
+# hubot再起動
+
 # ビルド
 →@bot jenkins build sample02
 
